@@ -1,0 +1,5 @@
+  tasks:
+   - name: Installing Apache WebServer
+     action: yum name=httpd state=installed
+   - name: Start the Web Service
+     service: name=httpd state=started
