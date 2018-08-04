@@ -1,4 +1,4 @@
-### This is a tast to install apache
+### This is a task to inject in project of installing apache
   tasks:
    - name: Installing Apache WebServer
      action: yum name=httpd state=installed
