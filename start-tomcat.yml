@@ -1,0 +1,9 @@
+   - name: Installing Apache-tomcat
+     action: yum name=tomcat state=installed
+   - name: Waiting for port 8080 to be listening
+     wait_for:
+       port: 8080
+       state: started
+   - name: Verifying Lynx Installation
+     action: yum name=lynx state=installed
+
