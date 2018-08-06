@@ -1,10 +1,13 @@
----  
-- name: Installing Apache-tomcat
+--- 
+- hosts: all
+  name: Installing Apache-tomcat
+  become: yes
+  tasks: 
   yum:
      name: tomcat 
      state: installed
   
-  name : Waiting for port 8080 to be listening
+- name : Waiting for port 8080 to be listening
     wait_for:
       port: 8080
       state: started
@@ -12,4 +15,22 @@
   yum:
      name: lynx
      state: installed
+     #################################################################
+     ### This is a task to inject in project of installing apache
+---
+- hosts: all
+  name: Install the web server
+  become: yes
+  vars: 
+    httpd_packages:
+      - httpd
+      - mod_wsgi
+    apache_test_msg: This is a test message
+    apache_max_leave_request: 115
+  tasks:
+    - name: Installing Apache httpd
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ httpd_packages }}"
 
