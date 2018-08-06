@@ -1,6 +1,17 @@
 ### This is a task to inject in project of installing apache
+---
+- hosts: all
+  name: Install the web server
+  become: yes
+  vars: 
+    httpd_packages:
+      - httpd
+      - mod_wsgi
+    apache_test_msg: This is a test message
+    apache_max_leave_request: 115
   tasks:
-   - name: Installing Apache WebServer
-     action: yum name=httpd state=installed
-   - name: Start the Web Service
-     service: name=httpd state=started
+    - name: Installing Apache httpd
+      yum:
+        name: "{{ item }}"
+        state: present
+      with_items: "{{ httpd_packages }}
