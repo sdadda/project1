@@ -6,7 +6,7 @@
     - name: Installing tomcat package
       yum:
         name: tomcat 
-        state: installed
+        state: present
   
     - name : Waiting for port 8080 to be listening
       wait_for:
@@ -15,4 +15,4 @@
     - name: Verifying Lynx Installation
       yum:
         name: lynx
-        state: installed
+        state: present
