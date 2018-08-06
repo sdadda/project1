@@ -1,3 +1,4 @@
+### This is a task to install tomcat
 --- 
 - hosts: all
   name: Installing Apache-tomcat
@@ -8,10 +9,6 @@
         name: tomcat 
         state: present
   
-    - name : Waiting for port 8080 to be listening
-      wait_for:
-        port: 8080
-        state: started
     - name: Verifying Lynx Installation
       yum:
         name: lynx
