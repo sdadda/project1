@@ -15,3 +15,7 @@
         name: "{{ item }}"
         state: present
       with_items: "{{ httpd_packages }}"
+    - name: Genrate a basic homepage from jinja2 template
+      template:
+        src: templates/index.html.j2
+        dest: /var/www/html/index.html
